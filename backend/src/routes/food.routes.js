@@ -12,5 +12,8 @@ storage:multer.memoryStorage()
 /*POST /api/food/  [protected]  */
 router.post("/",authMiddleware.authFoodPartnerMiddleware,  upload.single("videoFile"),foodController.createFood)
 
+/*  GET /api/food [protected] */
+router.get("/",authMiddleware.authUserMiddleware,foodController.getFoodItems)
+
 
 module.exports = router;

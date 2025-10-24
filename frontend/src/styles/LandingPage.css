@@ -1,0 +1,210 @@
+/* =========================================
+   LandingPage.css - (Fresh Light Mode UI)
+   =========================================
+   - New light-mode color palette
+   - Centered, top-down layout
+   - Illustration-style visual placeholder
+   - Clean, readable typography
+   - Soft shadows and borders
+========================================= */
+
+/* ------------------------------
+   :root Variables
+------------------------------ */
+:root {
+  /* Colors */
+  --primary-color: #ff6347;       /* Tomato */
+  --primary-hover: #e65a40;       /* Darker Tomato */
+  --bg-color: #ffffff;            /* White BG */
+  --text-heading: #222222;        /* Dark gray */
+  --text-body: #555555;          /* Medium gray */
+  --text-light: #777777;         /* Light gray */
+  --border-color: #eeeeee;        /* Very light gray border */
+  --shadow-color: rgba(0, 0, 0, 0.05);
+
+  /* Transitions & Animations */
+  --transition-speed: 0.3s;
+  --btn-hover-scale: 1.03; /* More subtle scale */
+}
+
+/* ------------------------------
+   Hero Section
+------------------------------ */
+.landing-hero {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  padding: 3rem 1rem;
+  background-color: var(--bg-color);
+  color: var(--text-body);
+  text-align: center;
+  overflow: hidden;
+}
+
+/* ------------------------------
+   Content Block
+------------------------------ */
+.landing-content {
+  max-width: 600px;
+  width: 100%;
+  opacity: 0;
+  transform: translateY(20px);
+  animation: fadeUp 1s cubic-bezier(0.1, 0.8, 0.2, 1) forwards 0.3s;
+}
+
+/* ------------------------------
+   New Hero Visual
+------------------------------ */
+.hero-visual {
+  width: 180px;
+  height: 180px;
+  margin: 0 auto 2rem auto;
+  border-radius: 50%;
+  /* A subtle background to make the icon pop */
+  background: linear-gradient(135deg, #fff0f0, #fffae8);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 4px 20px var(--shadow-color);
+}
+
+.hero-icon {
+  font-size: 5rem;
+  transform: translateY(4px);
+}
+
+/* ------------------------------
+   Copy Section
+------------------------------ */
+.copy {
+  /* Text is already centered by .landing-hero */
+}
+
+.title {
+  color: var(--text-heading);
+  font-size: clamp(2rem, 6vw, 2.8rem);
+  margin: 0 0 0.75rem;
+  font-weight: 800;
+  letter-spacing: -0.02em;
+}
+
+.lead {
+  font-size: clamp(1rem, 4vw, 1.15rem);
+  margin: 0 0 1.5rem;
+  color: var(--text-body);
+  line-height: 1.6;
+}
+
+/* ------------------------------
+   CTA Buttons
+------------------------------ */
+.cta-row {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+}
+
+.cta-row .btn {
+  padding: 14px 28px;
+  border-radius: 30px;
+  font-size: 1rem;
+  font-weight: 600;
+  transition: all var(--transition-speed) ease;
+  text-decoration: none;
+  display: inline-block;
+  transform: scale(1);
+  border: 2px solid transparent;
+  cursor: pointer;
+  outline: none;
+  width: 100%;
+}
+
+/* Accessibility Focus */
+.cta-row .btn:focus-visible {
+  outline: 3px solid var(--primary-color);
+  outline-offset: 2px;
+}
+
+/* Primary Button */
+.btn-primary {
+  background-color: var(--primary-color);
+  color: #ffffff;
+  box-shadow: 0 4px 15px rgba(255, 99, 71, 0.3);
+}
+
+.btn-primary:hover,
+.btn-primary:focus {
+  background-color: var(--primary-hover);
+  transform: scale(var(--btn-hover-scale));
+  box-shadow: 0 6px 20px rgba(255, 99, 71, 0.35);
+}
+
+/* Outline Button (Light Mode) */
+.btn-outline {
+  background-color: transparent;
+  color: var(--text-body);
+  border: 2px solid var(--border-color);
+}
+
+.btn-outline:hover,
+.btn-outline:focus {
+  background-color: var(--border-color);
+  color: var(--text-heading);
+  transform: scale(var(--btn-hover-scale));
+}
+
+/* ------------------------------
+   Muted Text / Links
+------------------------------ */
+.muted {
+  margin-top: 1.5rem;
+  font-size: 0.9rem;
+  color: var(--text-light);
+}
+
+.muted a {
+  color: var(--primary-color);
+  text-decoration: underline;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 3px;
+  outline: none;
+  transition: color var(--transition-speed);
+}
+
+.muted a:hover,
+.muted a:focus {
+  color: var(--primary-hover);
+}
+
+.muted a:focus-visible {
+  outline: 2px solid var(--primary-color);
+  outline-offset: 2px;
+  border-radius: 4px;
+}
+
+/* ------------------------------
+   Animations
+------------------------------ */
+@keyframes fadeUp {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* ------------------------------
+   Responsive
+------------------------------ */
+@media (min-width: 600px) {
+  .cta-row {
+    flex-direction: row;
+    justify-content: center;
+  }
+  .cta-row .btn {
+    width: auto;
+    min-width: 220px;
+  }
+}

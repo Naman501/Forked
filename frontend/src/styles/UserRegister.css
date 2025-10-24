@@ -86,12 +86,13 @@
 .form-group label {
   font-size: 0.875rem;
   font-weight: 600;
+  /* margin: 4px 0; */
   color: #333;
   letter-spacing: -0.01em;
 }
 
 .form-group input {
-  padding: 0.875rem 1rem;
+  padding: 0.895rem 1rem;
   border-radius: 10px;
   border: 1.5px solid #e8e8e8;
   font-size: 0.95rem;

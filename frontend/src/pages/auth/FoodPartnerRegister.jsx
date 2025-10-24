@@ -1,10 +1,15 @@
 import React, { useState } from 'react';
-
-import "../styles/FoodPartnerRegister.css";
+import { Link } from 'react-router-dom';
+import axios from 'axios';
+import { useNavigate } from 'react-router-dom';
+import "../../styles/FoodPartnerRegister.css";
 
 
 
 const FoodPartnerRegister = () => {
+
+    const navigate = useNavigate();
+
     const [formData, setFormData] = useState({
         name: '',
         email: '',
@@ -17,10 +22,37 @@ const FoodPartnerRegister = () => {
         setFormData({ ...formData, [name]: value });
     };
 
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault();
         // Handle form submission logic here
         console.log('Form submitted:', formData);
+
+
+        const { businessName, email, password, address,phone,contactName } = formData;
+
+
+        try {
+            const res = await axios.post(
+                "http://localhost:3000/api/auth/food-partner/register",
+                {
+                    businessName,
+                    email,
+                    password,
+                    address,
+                    phone,
+                    contactName
+                },
+                {
+                    withCredentials: true
+                }
+            );
+
+            console.log("Registration response:", res.data);
+        } catch (err) {
+            console.error("Registration error:", err);
+        }
+        
+        navigate("/create-food");
     };
 
     return (
@@ -73,6 +105,10 @@ const FoodPartnerRegister = () => {
                 </div>
                 <button type="submit">Register</button>
             </form>
+            <p style={{ marginTop: '1rem' }}>
+                Not a food partner? {" "}
+                <Link to="/user/register">Register as normal user</Link>
+            </p>
         </div>
     );
 };

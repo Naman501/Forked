@@ -1,10 +1,17 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
-import "../styles/UserRegister.css"; // create this file
+import "../../styles/UserRegister.css"; // create this file
+import axios from "axios";
+import { useNavigate } from "react-router-dom";
+
 
 const UserRegister = () => {
+
+const navigate = useNavigate();
+
   const [formData, setFormData] = useState({
-    username: "",
+    firstName: "",
+    lastName: "",
     email: "",
     password: "",
   });
@@ -12,12 +19,32 @@ const UserRegister = () => {
 
   const handleChange = (e) => {
     const { name, value } = e.target;
-    setFormData((s) => ({ ...s, [name]: value }));
+    setFormData((prev) => ({ ...prev, [name]: value }));
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log("User registered:", formData);
+    const { firstName, lastName, email, password } = formData;
+
+    try {
+      const res = await axios.post(
+        "http://localhost:3000/api/auth/user/register",
+        {
+         fullName: firstName + " " + lastName,
+          email,
+          password,
+        },{
+          withCredentials: true
+        }
+      );
+
+      // UI-only: log response (replace with real handling as needed)
+      console.log("Registration response:", res.data);
+    } catch (err) {
+      console.error("Registration error:", err);
+    }
+
+    navigate("/")
   };
 
   return (
@@ -29,18 +56,34 @@ const UserRegister = () => {
         </header>
 
         <form className="register-form" onSubmit={handleSubmit}>
-          <div className="form-group">
-            <label htmlFor="username">Username</label>
-            <input
-              id="username"
-              name="username"
-              type="text"
-              placeholder="Your username"
-              value={formData.username}
-              onChange={handleChange}
-              required
-              autoComplete="username"
-            />
+          <div className="form-row">
+            <div className="form-group half-width">
+              <label htmlFor="firstName">First Name</label>
+              <input
+                id="firstName"
+                name="firstName"
+                type="text"
+                placeholder="First Name"
+                value={formData.firstName}
+                onChange={handleChange}
+                required
+                autoComplete="given-name"
+              />
+            </div>
+
+            <div className="form-group half-width">
+              <label htmlFor="lastName">Last Name</label>
+              <input
+                id="lastName"
+                name="lastName"
+                type="text"
+                placeholder="Last Name"
+                value={formData.lastName}
+                onChange={handleChange}
+                required
+                autoComplete="family-name"
+              />
+            </div>
           </div>
 
           <div className="form-group">
@@ -90,14 +133,14 @@ const UserRegister = () => {
               Login
             </Link>
           </p>
-        </form>
 
-        <footer className="register-footer">
-          <small>
-            By creating an account, you agree to our{" "}
-            <span className="text-link">terms & privacy policy.</span>
-          </small>
-        </footer>
+          <p className="alt-register">
+            Are you a food partner?{" "}
+            <Link to="/food-partner/register" className="text-link">
+              Register as food partner
+            </Link>
+          </p>
+        </form>
       </div>
     </div>
   );

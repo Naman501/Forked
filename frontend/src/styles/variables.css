@@ -1,0 +1,22 @@
+:root {
+  --bg: #f8fafc;
+  --text: #0f172a;
+  --muted: #64748b;
+  --accent: #ef4444;
+  --card: rgba(255,255,255,0.6);
+  --overlay-bg: rgba(0,0,0,0.35);
+  --btn-text: #ffffff;
+  --radius: 10px;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg: #071022;
+    --text: #e6eef8;
+    --muted: #9aa9bf;
+    --accent: #fb923c;
+    --card: rgba(8,10,15,0.45);
+    --overlay-bg: rgba(0,0,0,0.45);
+    --btn-text: #071022;
+  }
+}

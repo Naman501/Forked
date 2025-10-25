@@ -1,13 +1,14 @@
 /* CSS Theme Variables (Light & Dark via system preference) */
 :root {
-  --color-bg: #f9fafb;
+  /* Base theme: white background with orange accent */
+  --color-bg: #ffffff;
   --color-surface: #ffffff;
-  --color-surface-alt: #f1f5f9;
+  --color-surface-alt: #fff7ed; /* very light orange tint */
   --color-border: #e2e8f0;
   --color-text: #0f172a;
   --color-text-secondary: #475569;
-  --color-accent: #2563eb;
-  --color-accent-hover: #1d4ed8;
+  --color-accent: #fb923c; /* orange-400 */
+  --color-accent-hover: #f97316; /* orange-500 */
   --color-danger: #dc2626;
 
   --radius-xs: 2px;

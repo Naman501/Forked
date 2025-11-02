@@ -1,0 +1,85 @@
+/* Home reels styles - self contained so it works even if global shared.css isn't present */
+:root {
+  --reel-overlay-bg: rgba(0,0,0,0.45);
+  --reel-btn-bg: var(--color-accent, #fb923c);
+  --reel-btn-color: #fff;
+}
+
+html, body, #root { height: 100%; }
+
+.reels {
+  height: 100vh;
+  width: 100vw; /* ensure full-bleed width */
+  margin-left: calc(50% - 50vw); /* break out of any centered container */
+  overflow-y: auto;
+  scroll-snap-type: y mandatory;
+  -webkit-overflow-scrolling: touch;
+  background: var(--color-bg, #fff);
+}
+
+.reel {
+  position: relative;
+  height: 100vh;
+  width: 100vw; /* ensure each reel fills viewport width */
+  left: 0;
+  scroll-snap-align: start;
+  overflow: hidden;
+  display: block;
+}
+
+/* show a visible background if video doesn't render */
+.reel {
+  background: var(--color-surface-alt, #f3f4f6);
+}
+
+.reel video {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.overlay {
+  position: absolute;
+  bottom: 28px;
+  left: 16px;
+  right: 16px;
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  align-items: flex-start;
+}
+
+.overlay { box-shadow: 0 6px 18px rgba(0,0,0,0.35); }
+
+.desc {
+  color: #fff;
+  font-size: 1rem;
+  line-height: 1.2;
+  max-width: 80%;
+  background: var(--reel-overlay-bg);
+  padding: 10px 12px;
+  border-radius: 10px;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-height: calc(1.2rem * 2 + 20px);
+}
+
+.visit-store {
+  display: inline-block;
+  padding: 8px 14px;
+  background: var(--reel-btn-bg);
+  color: var(--reel-btn-color);
+  border-radius: 999px;
+  font-weight: 700;
+  text-decoration: none;
+}
+
+@media (max-width: 640px) {
+  .desc { max-width: 92%; font-size: 0.95rem; }
+  .overlay { bottom: 20px; }
+}

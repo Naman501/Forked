@@ -11,7 +11,7 @@ const UserLogin = () => {
     const handleSubmit =async (e) => {
         e.preventDefault();
         // Handle login logic here
-        console.log('Email:', email, 'Password:', password);
+        // console.log('Email:', email, 'Password:', password);
 
         try {
             const res = await axios.post(
@@ -25,7 +25,7 @@ const UserLogin = () => {
                 }
             );
 
-            console.log("Login response:", res.data);
+            console.log("Login response:", res);
         } catch (err) {
             console.error("Login error:", err);
         }

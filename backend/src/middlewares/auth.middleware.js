@@ -14,6 +14,13 @@ async function authFoodPartnerMiddleware(req , res , next) {
 
         const foodPartner = await foodPartnerModel.findById(decoded.id);
 
+
+        if (!foodPartner) {
+            return res.status(404).json({
+                message: "Food partner not found"
+            });
+        }
+        
         req.foodPartner=foodPartner;
 
         next()
